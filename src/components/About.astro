@@ -1,40 +1,215 @@
 ---
 import { siteConfig } from "../config";
+
+const coreDevelopment = [
+  "HTML5",
+  "CSS3",
+  "JavaScript (ES6+)",
+  "Node.js",
+  "Express",
+  "Cloudflare (Pages/Functions/D1)",
+  "Git",
+];
+
+const designCollab = ["Figma", "Notion", "Discord"];
+
+const aiEfficiency = ["ChatGPT", "Notion AI", "Midjourney", "Windsurf", "Gemini"];
 ---
 
-<section id="about" class="p-8 sm:p-12 md:p-16 lg:p-24">
-  <div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-      <div class="lg:col-span-4">
-        <h2
-          class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
-        >
-          About Me
-        </h2>
-        <div
-          class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`}
-        >
+<section
+  id="about"
+  class="py-16 sm:py-20 mb-20"
+  style={`font-family: Pretendard, "Noto Sans KR", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;`}
+>
+  <div class="max-w-[1200px] mx-auto px-6 sm:px-8">
+    <div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-[#0B1B3A]">소개</h2>
+      <div
+        class="w-14 h-1 mt-3 rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      />
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+      <div class="lg:col-span-6">
+        <h3 class="text-[2rem] sm:text-[2.25rem] font-bold tracking-tight text-[#0B1B3A] leading-tight">
+          문제 앞에서는 <span class="hl" style={`--hl-color: ${siteConfig.accentColor}`}>집요하게</span>, 팀 안에서는 <span class="hl" style={`--hl-color: ${siteConfig.accentColor}`}>든든하게</span>.
+          <br />
+          끝까지 완주하는 풀스택 개발자 <span class="hl" style={`--hl-color: ${siteConfig.accentColor}`}>이혜원</span>입니다.
+        </h3>
+
+        <div class="mt-6 space-y-4 text-[1.05rem] leading-[1.75] text-[#1C2B4A]">
+          <p>
+            웹/앱 디자인부터 프론트엔드, 백엔드, DB 설계, 배포까지 서비스 개발의 전 과정을 주도하며 폭넓은 기술적 커버리지를 갖췄습니다.
+            마주한 문제는 밤을 새워서라도 해결해내고야 마는
+            <span class="font-semibold" style={`color: ${siteConfig.accentColor}`}> 집요한 끈기(Grit)</span>가 저의 가장 큰 무기입니다.
+            이러한 열정으로 캡스톤 디자인 경진대회 2위라는 성과를 증명해 냈습니다.
+          </p>
+          <p>
+            팀 프로젝트에서는 리더의 방향성을 존중하며 확실한 의견 제시로 힘을 싣는
+            <span class="font-semibold" style={`color: ${siteConfig.accentColor}`}> 스마트한 팔로워</span>입니다.
+            팀이 흔들릴 때는 멘탈을 잡아주는 중심이 되고, 동료가 기술적인 어려움을 겪을 때는 기꺼이 도맡아 해결하는
+            <span class="font-semibold" style={`color: ${siteConfig.accentColor}`}> 기술적 멘토</span>로서,
+            팀 전체가 '완주'할 수 있도록 이끄는 든든한 파트너가 되겠습니다.
+          </p>
         </div>
       </div>
 
-      <div class="lg:col-span-8 space-y-8">
-        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">
-          {siteConfig.aboutMe}
-        </p>
+      <div class="lg:col-span-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
+          <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start gap-3">
+              <span
+                class="inline-flex items-center justify-center w-11 h-11 rounded-2xl"
+                style={`background-color: ${siteConfig.accentColor}12; color: ${siteConfig.accentColor}`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 9l3 3l-3 3" />
+                  <path d="M13 15h3" />
+                  <path d="M4 4h16v16H4z" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-semibold text-[#0B1B3A]">Full-Stack</p>
+                <p class="mt-1 text-sm text-gray-600 leading-relaxed">
+                  Frontend UI/UX 설계부터 Serverless DB 구축까지 전 과정 주도
+                </p>
+              </div>
+            </div>
+          </div>
 
-        <div class="pt-4">
-          <div class="flex flex-wrap gap-3">
-            {
-              siteConfig.skills.map((skill) => (
-                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
-                  {skill}
-                </span>
-              ))
-            }
+          <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start gap-3">
+              <span
+                class="inline-flex items-center justify-center w-11 h-11 rounded-2xl"
+                style={`background-color: ${siteConfig.accentColor}12; color: ${siteConfig.accentColor}`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="8.5" cy="7" r="4" />
+                  <path d="M20 8v6" />
+                  <path d="M23 11h-6" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-semibold text-[#0B1B3A]">Leadership</p>
+                <p class="mt-1 text-sm text-gray-600 leading-relaxed">
+                  팀 목표 달성을 위한 적극적인 소통과 리더십
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start gap-3">
+              <span
+                class="inline-flex items-center justify-center w-11 h-11 rounded-2xl"
+                style={`background-color: ${siteConfig.accentColor}12; color: ${siteConfig.accentColor}`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z" />
+                  <path d="M19 13l1 3l3 1l-3 1l-1 3l-1-3l-3-1l3-1l1-3z" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-semibold text-[#0B1B3A]">Problem Solving</p>
+                <p class="mt-1 text-sm text-gray-600 leading-relaxed">
+                  운영 효율을 고려한 데이터 관리 시스템 및 어드민 개발
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <p class="text-base sm:text-lg font-bold text-[#0B1B3A]">My Toolbox</p>
+          <p class="mt-1 text-sm text-gray-600">업무에 바로 적용하는 기술과 도구들</p>
+        </div>
+      </div>
+
+      <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start gap-3">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style={`background-color: ${siteConfig.accentColor}12; color: ${siteConfig.accentColor}`}>
+              <span class="text-xl" aria-hidden="true">💻</span>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-[#0B1B3A]">Core Development</p>
+              <p class="mt-1 text-xs text-gray-600">서비스 개발의 핵심 역량</p>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {coreDevelopment.map((skill) => (
+              <span class="px-3 py-1.5 bg-[#F7FAFF] text-[#0B1B3A] border border-gray-200 rounded-full text-xs sm:text-sm font-medium">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start gap-3">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style={`background-color: ${siteConfig.accentColor}12; color: ${siteConfig.accentColor}`}>
+              <span class="text-xl" aria-hidden="true">🎨</span>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-[#0B1B3A]">Design & Collab</p>
+              <p class="mt-1 text-xs text-gray-600">기획과 소통을 명확하게</p>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {designCollab.map((tool) => (
+              <span class="px-3 py-1.5 bg-[#F7FAFF] text-[#0B1B3A] border border-gray-200 rounded-full text-xs sm:text-sm font-medium">
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start gap-3">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style={`background-color: ${siteConfig.accentColor}12; color: ${siteConfig.accentColor}`}>
+              <span class="text-xl" aria-hidden="true">🤖</span>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-[#0B1B3A]">AI Efficiency</p>
+              <p class="mt-1 text-xs text-gray-600">AI로 개발 생산성 극대화</p>
+            </div>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {aiEfficiency.map((tool) => (
+              <span class="px-3 py-1.5 bg-[#F7FAFF] text-[#0B1B3A] border border-gray-200 rounded-full text-xs sm:text-sm font-medium">
+                {tool}
+              </span>
+            ))}
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .hl {
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+  }
+
+  .hl::after {
+    content: "";
+    position: absolute;
+    left: -0.08em;
+    right: -0.08em;
+    bottom: 0.12em;
+    height: 0.42em;
+    background: var(--hl-color);
+    opacity: 0.28;
+    border-radius: 0.28em;
+    z-index: -1;
+  }
+</style>

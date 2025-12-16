@@ -1,187 +1,103 @@
-<img width="1943" height="1093" alt="image" src="https://github.com/user-attachments/assets/cc2ff955-17c2-48c7-81c8-479a0f061850" />
+# EcoChaser
 
-# DevPortfolio Template
+> **"복잡한 환경 정보를 게이미피케이션으로 풀어낸 Full-stack Serverless 프로젝트"**
+> - **주요 성과:** 2025 캡스톤 경진대회 우수상 및 현장 투표 1위
+> - **핵심 기술:** Cloudflare(Pages, Functions, D1), Node.js, Express
+> - **Focus:** 서버리스 아키텍처를 통한 인프라 최적화 및 대규모 사용자 실시간 데이터 처리
 
-A modern, minimalist portfolio template built with Astro and Tailwind CSS. Perfect for developers looking to showcase their skills, experience, and projects in a clean, professional way.
+## 1. 프로젝트 개요 (Engineering Summary)
 
-This was completely rebuilt from the ground up from V1. This template was built to be entirely ready to go with a quick config edit (see below) but also provides the ability to easily extend in whatever way you want.
+EcoChaser는 “분리수거 정보가 복잡해서 참여가 낮아지는 문제”를 **러너형 게임 UX**로 재해석한 친환경 서비스입니다. 단순한 프론트 배포가 아니라 **Cloudflare Pages + Functions + D1을 결합한 Full-stack Serverless 아키텍처**로 설계하여, 인프라 운영 부담을 최소화하면서도 **실시간 랭킹/오답 노트**와 같은 동적 기능을 안정적으로 제공합니다.
 
-This template also comes with `CLAUDE.md` and `.cursor/rules` files for easy integration with your existing AI workflows.
+핵심 목표는 다음 3가지입니다.
 
-> **📬 Connect & Share!**  
-> For questions and updates, feel free to reach out on [**X (Twitter)**](https://x.com/rfitzio).  
-> If you've built and published your personal site with this template, I'd love to see it! Send me a DM 🚀
+- **사용자 경험(UX)**: 텍스트 중심의 정보를 게임 흐름(가이드 → 플레이 → 결과)으로 전환
+- **운영/확장성**: Serverless 기반으로 배포·확장 비용을 줄이고 장애 대응을 빠르게
+- **실시간 데이터 처리**: Edge DB 기반으로 랭킹 집계/조회 지연을 최소화
 
-## Preview
+## 2. Live & Repo
 
-To view a live preview of the site, [click here](https://ryanfitzgerald.github.io/devportfolio/).
+- **Demo:** https://eco-chaser.pages.dev/
+- **GitHub:** https://github.com/ih148199-art/Eco_Chaser
 
-## Built With
+## 3. Architecture
 
-- **[Astro](https://astro.build/)** - Static site generator for modern web apps
-- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[Tabler Icons](https://tabler.io/icons)** - Free and open source icons
-- **TypeScript** - For type-safe configuration
+```mermaid
+flowchart LR
+  U[User Browser] -->|HTTPS| P[Cloudflare Pages
+  Static Assets]
+  U -->|API 요청| F[Cloudflare Functions
+  Serverless API]
+  F -->|SQL Query| D[(Cloudflare D1
+  Edge SQLite DB)]
+  D -->|Result| F
+  F -->|JSON| U
+  P -->|CSR/Assets| U
 
-## Updating the Template
-
-### Configuration
-
-The template is designed to be easily customizable through the `src/config.ts` file. This single file controls:
-
-- **Personal Information**: Name, title, description
-- **Accent Color**: Primary color theme (changing this will change the accent color site wide)
-- **Social Links**: Email, LinkedIn, Twitter, GitHub (all optional)
-- **About Section**: Personal bio/description
-- **Skills**: List of technical skills
-- **Projects**: Project showcase with descriptions and links
-- **Experience**: Work history with bullet points
-- **Education**: Educational background and achievements
-
-If skills, projects, experience, or education are removed from the config, those sections will be hidden entirely.
-
-### Example structures
-
-Here's what the config data structure looks like for each section:
-
-#### Basic Information
-```typescript
-name: "Your Name",
-title: "Your Job Title",
-description: "Brief site description",
-accentColor: "#1d4ed8", // Hex color for theme
+  subgraph Observability
+    L[Cloudflare Logs]
+  end
+  F -.-> L
 ```
 
-#### Social Links (all optional)
-```typescript
-social: {
-  email: "your-email@example.com",
-  linkedin: "https://linkedin.com/in/yourprofile",
-  twitter: "https://twitter.com/yourprofile", 
-  github: "https://github.com/yourusername",
-}
-```
+## 4. 기술 스택 (구체화/복붙용)
 
-#### About Section
-```typescript
-aboutMe: "A paragraph describing yourself, your background, interests, and what you're passionate about. This appears in the About section of your portfolio."
-```
+### Cloudflare Ecosystem
 
-#### Skills
-```typescript
-skills: ["JavaScript", "React", "Node.js", "Python", "AWS", "Docker"]
-```
+단순 배포를 넘어 **Pages(정적 자산) + Functions(API) + D1(DB)** 를 결합해 **Full-stack 파이프라인**을 구성했습니다. 서버·DB 인프라를 별도로 운영하지 않아도 되는 구조로 전환하여 **인프라 관리 비용을 최소화**하고, 배포/확장/장애 대응을 빠르게 가져갈 수 있도록 설계했습니다.
 
-#### Projects
-```typescript
-projects: [
-  {
-    name: "Project Name",
-    description: "Brief description of what the project does and its impact",
-    link: "https://github.com/yourusername/project",
-    skills: ["React", "Node.js", "AWS"], // Technologies used
-  }
-]
-```
+### Cloudflare D1
 
-#### Experience
-```typescript
-experience: [
-  {
-    company: "Company Name",
-    title: "Your Job Title",
-    dateRange: "Jan 2022 - Present",
-    bullets: [
-      "Led development of microservices architecture serving 1M+ users",
-      "Reduced API response times by 40% through optimization",
-      "Mentored team of 5 junior developers",
-    ],
-  }
-]
-```
+SQLite 기반의 **Edge Database**인 D1을 활용해, 전 세계 어디서든 지연 시간을 최소화하는 방향으로 **실시간 랭킹 시스템**을 구현했습니다. 랭킹 조회/집계의 병목을 줄이기 위해 쿼리 구조를 점검하고 인덱싱 전략을 고려하여 응답 시간을 최적화했습니다.
 
-#### Education
-```typescript
-education: [
-  {
-    school: "University Name",
-    degree: "Bachelor of Science in Computer Science",
-    dateRange: "2014 - 2018",
-    achievements: [
-      "Graduated Magna Cum Laude with 3.8 GPA",
-      "Dean's List all semesters",
-      "President of Computer Science Club"
-    ]
-  }
-]
-```
+### Node.js & Express
 
-### Icons
+Serverless 환경에서 유지보수성을 확보하기 위해 **Express 스타일의 라우팅 구조**를 설계했습니다. 엔드포인트를 명확히 분리하고 미들웨어 패턴을 활용해 로직을 모듈화하여, 기능 추가/수정 시 변경 범위를 최소화하도록 구성했습니다.
 
-The template uses [Tabler Icons](https://tabler.io/icons) for all icons. If you wish to add more icons and have it look consistent with what's already there, you can browse through their extensive icon library.
+## 5. Technical Troubleshooting (가장 중요)
 
-## Project Structure
+### 문제
 
-```
-devportfolio/
-├── public/
-│   └── favicon.svg          # Site favicon
-├── src/
-│   ├── components/          # Astro components
-│   │   ├── About.astro      # About section
-│   │   ├── Education.astro  # Education section
-│   │   ├── Experience.astro # Work experience section
-│   │   ├── Footer.astro     # Site footer
-│   │   ├── Header.astro     # Navigation header
-│   │   ├── Hero.astro       # Hero/intro section
-│   │   └── Projects.astro   # Projects showcase
-│   ├── pages/
-│   │   └── index.astro      # Main page layout
-│   ├── styles/
-│   │   └── global.css       # Global styles
-│   └── config.ts            # Site configuration
-├── astro.config.mjs         # Astro configuration
-├── package.json             # Project dependencies
-├── tailwind.config.js       # Tailwind configuration
-└── tsconfig.json            # TypeScript configuration
-```
+서버리스 환경에서 랭킹 데이터를 집계/조회할 때, 사용자 수가 증가하면 **응답 지연(latency)** 이 발생할 수 있었습니다. 특히 “랭킹”은 사용자 체감이 큰 기능이라, 시연 환경에서 안정성이 중요했습니다.
 
-## Local Development
+### 분석
 
-If you'd like to run it locally:
+원인을 쿼리 관점에서 분해해보니, **D1 쿼리 최적화 및 인덱싱 필요성**이 핵심 이슈였습니다.
 
-```
-git clone https://github.com/RyanFitzgerald/devportfolio.git
-cd devportfolio
-npm install
-```
+- 랭킹 집계 쿼리에서 불필요한 스캔이 발생할 수 있음
+- 조회/정렬 조건에 맞는 인덱스가 없으면 응답 시간이 사용자 수에 비례해 증가
 
-After that, start up the Astro dev server with:
+### 해결
 
-```
-npm run dev
-```
+다음과 같은 방향으로 응답 속도를 최적화했습니다.
 
-## Deployment
+- **효율적인 SQL 쿼리 설계**: 필요한 컬럼만 조회하고, 집계/정렬/필터 조건을 단순화
+- **인덱싱 전략**: 조회 패턴에 맞춰 인덱스 적용을 검토하여 전체 스캔을 최소화
+- **캐싱 전략 고려**: 서버리스 특성을 고려해 “자주 조회되는 랭킹”은 캐싱 가능성을 열어두고 설계
 
-The template can be deployed to any static hosting service easily (and in most cases, completely free). Here are some options:
+### 결과
 
-- To deploy with Netlify, [click here](https://docs.astro.build/en/guides/deploy/netlify/).
-- To deploy with Vercel, [click here](https://docs.astro.build/en/guides/deploy/vercel/).
-- To deploy with GitHub Pages, [click here](https://docs.astro.build/en/guides/deploy/github/).
-- To deploy with Cloudflare Pages, [click here](https://docs.astro.build/en/guides/deploy/cloudflare/).
-- To deploy with Render, [click here](https://docs.astro.build/en/guides/deploy/render/).
+캡스톤 경진대회 현장에서 **100명 이상 동시 접속** 상황에서도, 랭킹/오답 노트 포함 주요 기능을 **끊김 없이 제공**했습니다.
 
-Want to deploy somewhere else? Find more guides [here](https://docs.astro.build/en/guides/deploy/).
+## 6. 성과 및 증빙 (업그레이드)
 
-## Changelog
+### 주요 성과
 
-To view the changelog, see CHANGELOG.md.
+- **2025 캡스톤 디자인 경진대회 우수상 수상**
+- **현장 투표 1위 달성**
 
-## License
+### 개발자로서의 임팩트
 
-This project is fully and completely MIT. See LICENSE.md.
+- 텍스트 중심의 분리수거 정보를 **러너형 게임 UX**로 재해석하여 사용자 참여 흐름을 강화
+- Serverless 로그 모니터링 기반으로 시연 중 발생한 예외 상황을 빠르게 파악하고 대응
+- Full-stack Serverless 구조로 운영 부담을 줄이면서도 핵심 기능(랭킹/오답 노트)을 안정적으로 제공
 
-## Questions?
+### 증빙 자료
 
-Feel free to reach out on [X (Twitter)](https://x.com/rfitzio) if you have any questions or need help.
+아래 경로에 캡스톤 관련 증빙 이미지가 포함되어 있습니다.
+
+- `public/images/projects/ecochaser/`
+  - 캡스톤 경진대회 우수상.jpg
+  - 캡스톤 현장 결과 1.jpg
+  - 캡스톤 현장 결과 2.jpg
+

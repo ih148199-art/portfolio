@@ -1,74 +1,240 @@
 ---
 import { siteConfig } from "../config";
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
+
+const awards = [
+  {
+    title: "캡스톤 경진대회 우수상",
+    src: `/images/projects/ecochaser/${encodeURIComponent(
+      "캡스톤 경진대회 우수상.jpg"
+    )}`,
+  },
+  {
+    title: "캡스톤 현장 결과",
+    src: `/images/projects/ecochaser/${encodeURIComponent(
+      "캡스톤 현장 결과 1.jpg"
+    )}`,
+  },
+  {
+    title: "캡스톤 현장 결과",
+    src: `/images/projects/ecochaser/${encodeURIComponent(
+      "캡스톤 현장 결과 2.jpg"
+    )}`,
+  },
+];
 ---
 
 {
   hasExperience && (
-    <section id="experience" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Experience
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
+    <section
+      id="experience"
+      class="py-16 sm:py-20 mb-20"
+      style={`font-family: Pretendard, "Noto Sans KR", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;`}
+    >
+      <div class="max-w-[1200px] mx-auto px-6 sm:px-8">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0B1B3A]">경험</h2>
+          <div
+            class="w-14 h-1 mt-3 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`}
+          />
+        </div>
 
-          <div class="lg:col-span-8">
-            <div class="relative">
-              {siteConfig.experience.map((exp, index) => (
-                <div class="relative mb-12 last:mb-0">
-                  {/* Timeline dot at top of card */}
-                  <div
-                    class="absolute left-1/2 -top-2 w-4 h-4 bg-white border-2 rounded-full -translate-x-1/2 z-20 transition-all duration-300"
-                    style={`border-color: ${siteConfig.accentColor}; background-color: ${siteConfig.accentColor}`}
-                  />
+        <div class="mt-10">
+          <div class="relative">
+            {siteConfig.experience.map((exp, index) => (
+              <div class="relative mb-12 last:mb-0">
+                {/* Timeline dot at top of card */}
+                <div
+                  class="absolute left-1/2 -top-2 w-4 h-4 bg-white border-2 rounded-full -translate-x-1/2 z-20 transition-all duration-300"
+                  style={`border-color: ${siteConfig.accentColor}; background-color: ${siteConfig.accentColor}`}
+                />
 
-                  {/* Connecting line below card */}
-                  {index < siteConfig.experience.length - 1 && (
-                    <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-gray-300 -translate-x-1/2 translate-y-full z-10" />
-                  )}
+                {/* Connecting line below card */}
+                {index < siteConfig.experience.length - 1 && (
+                  <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-gray-300 -translate-x-1/2 translate-y-full z-10" />
+                )}
 
-                  {/* Experience card */}
-                  <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                      <div>
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
-                          {exp.title}
-                        </h3>
-                        <p
-                          class="text-base sm:text-lg"
-                          style={`color: ${siteConfig.accentColor}`}
-                        >
-                          {exp.company}
-                        </p>
-                      </div>
-                      <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
-                        {exp.dateRange}
-                      </span>
+                {/* Experience card */}
+                <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
+                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                    <div>
+                      <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
+                        {exp.title}
+                      </h3>
+                      <p
+                        class="text-base sm:text-lg"
+                        style={`color: ${siteConfig.accentColor}`}
+                      >
+                        {exp.company}
+                      </p>
                     </div>
-
-                    <ul class="space-y-2">
-                      {exp.bullets.map((bullet) => (
-                        <li class="flex items-start">
-                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                          <span class="text-sm sm:text-base text-gray-600">
-                            {bullet}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                    <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
+                      {exp.dateRange}
+                    </span>
                   </div>
+
+                  <ul class="space-y-2">
+                    {exp.bullets.map((bullet) => (
+                      <li class="flex items-start">
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
+                        <span class="text-sm sm:text-base text-gray-600">
+                          {bullet}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
+        </div>
+
+        <div class="mt-12">
+          <details class="rounded-2xl border border-gray-200 bg-white shadow-sm">
+            <summary class="cursor-pointer list-none px-5 sm:px-6 py-4 flex items-center justify-between select-none">
+              <span class="text-base sm:text-lg font-semibold text-gray-900">수상</span>
+              <span class="text-sm font-semibold text-gray-500">
+                <span class="detailsArrow inline-block transition-transform duration-200">&gt;</span>
+              </span>
+            </summary>
+
+            <div class="px-5 sm:px-6 pb-6">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {awards.map((a) => (
+                  <button
+                    type="button"
+                    class="awardThumb text-left rounded-2xl overflow-hidden border border-gray-200 bg-white hover:shadow-md transition-shadow"
+                    data-award-src={a.src}
+                    data-award-title={a.title}
+                    aria-label={`${a.title} 이미지 크게 보기`}
+                  >
+                    <div class="aspect-[4/3] bg-gray-50">
+                      <img
+                        src={a.src}
+                        alt={a.title}
+                        loading="lazy"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div class="px-4 py-3">
+                      <p class="text-sm font-semibold text-gray-900 line-clamp-1">{a.title}</p>
+
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </details>
+
+          <dialog id="awardDialog" class="awardDialog">
+            <div class="awardDialogInner">
+              <div class="awardDialogHeader">
+                <p id="awardDialogTitle" class="text-sm sm:text-base font-semibold text-gray-900"></p>
+                <button
+                  type="button"
+                  class="awardDialogClose"
+                  aria-label="닫기"
+                >
+                  ×
+                </button>
+              </div>
+              <img id="awardDialogImg" alt="" class="awardDialogImg" />
+            </div>
+          </dialog>
+
+          <script is:inline>
+            (() => {
+              const root = document.getElementById('experience');
+              if (!root) return;
+
+              const dialog = root.querySelector('#awardDialog');
+              const img = root.querySelector('#awardDialogImg');
+              const title = root.querySelector('#awardDialogTitle');
+              const closeBtn = root.querySelector('.awardDialogClose');
+              const thumbs = root.querySelectorAll('.awardThumb');
+
+              thumbs.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                  const src = btn.getAttribute('data-award-src');
+                  const t = btn.getAttribute('data-award-title');
+                  if (!dialog || !img) return;
+                  img.setAttribute('src', src || '');
+                  img.setAttribute('alt', t || '');
+                  if (title) title.textContent = t || '';
+
+                  try {
+                    dialog.showModal();
+                  } catch {
+                    dialog.setAttribute('open', '');
+                  }
+                });
+              });
+
+              closeBtn?.addEventListener('click', () => dialog?.close());
+
+              dialog?.addEventListener('click', (e) => {
+                if (e.target === dialog) dialog.close();
+              });
+            })();
+          </script>
         </div>
       </div>
     </section>
   )
 }
+
+<style>
+  details[open] .detailsArrow {
+    transform: rotate(90deg);
+  }
+  .awardDialog {
+    width: min(1100px, 96vw);
+    margin: auto;
+    border: none;
+    border-radius: 18px;
+    padding: 0;
+    background: transparent;
+  }
+  .awardDialog::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+  }
+  .awardDialogInner {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .awardDialogHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .awardDialogClose {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .awardDialogClose:hover {
+    background: #f9fafb;
+  }
+  .awardDialogImg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: calc(90vh - 56px);
+    object-fit: contain;
+    background: #f3f4f6;
+  }
+</style>
