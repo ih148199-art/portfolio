@@ -5,6 +5,10 @@
 > - **핵심 기술:** Cloudflare(Pages, Functions, D1), Node.js, Express
 > - **Focus:** 서버리스 아키텍처를 통한 인프라 최적화 및 대규모 사용자 실시간 데이터 처리
 
+## 배포 방법
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ih148199-art/portfolio)
+
 ## 1. 프로젝트 개요 (Engineering Summary)
 
 EcoChaser는 “분리수거 정보가 복잡해서 참여가 낮아지는 문제”를 **러너형 게임 UX**로 재해석한 친환경 서비스입니다. 단순한 프론트 배포가 아니라 **Cloudflare Pages + Functions + D1을 결합한 Full-stack Serverless 아키텍처**로 설계하여, 인프라 운영 부담을 최소화하면서도 **실시간 랭킹/오답 노트**와 같은 동적 기능을 안정적으로 제공합니다.
